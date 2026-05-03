@@ -26,20 +26,20 @@
             <i id="placeholder-icon" class="fa-solid fa-play-circle"></i>
         </div>
 
-        <div class="toolbar-container">
-            <div class="tool-item" onclick="showSection('filter-section')"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Filters</span></div>
-            <div class="tool-item" onclick="showSection('speed-section')"><i class="fa-solid fa-gauge-high"></i><span>Speed</span></div>
-            <div class="tool-item" onclick="showSection('adjust-section')"><i class="fa-solid fa-sliders"></i><span>Adjust</span></div>
-            <div class="tool-item" onclick="showSection('text-section')"><i class="fa-solid fa-t"></i><span>Text</span></div>
-            <div class="tool-item" onclick="showSection('audio-section')"><i class="fa-solid fa-music"></i><span>Audio</span></div>
+        <div class="toolbar-container" style="overflow-x: auto; display: flex; white-space: nowrap; background: #1e1e1e; padding: 10px 0; border-bottom: 1px solid #333; scrollbar-width: none;">
+            <div class="tool-item" style="flex: 0 0 75px; text-align: center;" onclick="showSection('filter-section')"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Filters</span></div>
+            <div class="tool-item" style="flex: 0 0 75px; text-align: center;" onclick="showSection('speed-section')"><i class="fa-solid fa-gauge-high"></i><span>Speed</span></div>
+            <div class="tool-item" style="flex: 0 0 75px; text-align: center;" onclick="showSection('adjust-section')"><i class="fa-solid fa-sliders"></i><span>Adjust</span></div>
+            <div class="tool-item" style="flex: 0 0 75px; text-align: center;" onclick="showSection('text-section')"><i class="fa-solid fa-t"></i><span>Text</span></div>
+            <div class="tool-item" style="flex: 0 0 75px; text-align: center;" onclick="showSection('audio-section')"><i class="fa-solid fa-music"></i><span>Audio</span></div>
         </div>
 
         <div id="adjust-section" class="controls-section">
             <span class="tool-label">Brightness</span>
-            <input type="range" id="brightness-slider" min="0" max="200" value="100" class="w3-select" oninput="applyAdjustments()">
-            
+            <input type="range" id="brightness-slider" min="0" max="200" value="100" style="width: 100%; accent-color: #8a2be2;" oninput="applyAdjustments()">
+
             <span class="tool-label" style="margin-top:10px; display:block;">Zoom (Scale)</span>
-            <input type="range" id="zoom-slider" min="1" max="3" step="0.1" value="1" class="w3-select" oninput="applyAdjustments()">
+            <input type="range" id="zoom-slider" min="1" max="3" step="0.1" value="1" style="width: 100%; accent-color: #8a2be2;" oninput="applyAdjustments()">
         </div>
 
         <div id="filter-section" class="controls-section">
