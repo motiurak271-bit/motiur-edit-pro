@@ -40,14 +40,17 @@ document.getElementById('audio-upload').onchange = (e) => {
     }
 };
 
-// Toggle Tool Panels
+// Unified Toggle Function (Fix)
 function showSection(id) {
     const sections = document.querySelectorAll('.controls-section');
     sections.forEach(s => {
         if (s.id === id) {
+            // যদি আগে থেকে খোলা থাকে তবে বন্ধ করো, না হলে খোলো
             s.style.display = (s.style.display === 'block') ? 'none' : 'block';
+            s.classList.add('active');
         } else {
             s.style.display = 'none';
+            s.classList.remove('active');
         }
     });
 }
@@ -63,46 +66,39 @@ function seekVideo(val) {
     video.currentTime = (val / 100) * video.duration;
 }
 
-function applyFilter(f) {
-    video.className = 'video-canvas filter-' + f;
+// Modern Filter & Speed Functions
+function applyFilter(val) { 
+    video.style.filter = val; 
+    video.className = 'video-canvas'; // Clear old classes
+}
+
+function changeSpeed(val) { 
+    video.playbackRate = val; 
 }
 
 // Pro Export Function
 async function highQualityExport() {
     if (!video.src) return alert("Please select a video first!");
-
     alert("FFmpeg loading... Please wait.");
-    
     try {
         if (!ffmpeg.isLoaded()) await ffmpeg.load();
-
         ffmpeg.FS('writeFile', 'input_v.mp4', await fetchFile(video.src));
-
         let command = ['-i', 'input_v.mp4'];
-        
         if (bgMusic.src) {
             ffmpeg.FS('writeFile', 'input_a.mp3', await fetchFile(bgMusic.src));
             command.push('-i', 'input_a.mp3', '-c:v', 'copy', '-map', '0:v:0', '-map', '1:a:0', '-shortest');
         }
-
         command.push('output.mp4');
-
         await ffmpeg.run(...command);
-
         const data = ffmpeg.FS('readFile', 'output.mp4');
         const url = URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }));
-        
         const a = document.createElement('a');
         a.href = url;
         a.download = 'Bondhu_Motiur_Edited.mp4';
         a.click();
-        
         alert('Export Success!');
     } catch (err) {
         console.error(err);
-        alert("Export failed. Ensure COOP/COEP headers are set.");
+        alert("Export failed!");
     }
 }
-function changeSpeed(val) { document.getElementById('main-video').playbackRate = val; }
-function applyFilter(val) { document.getElementById('main-video').style.filter = val; }
-function showSection(id) { document.querySelectorAll('.controls-section').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
