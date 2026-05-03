@@ -29,8 +29,17 @@
         <div class="toolbar-container">
             <div class="tool-item" onclick="showSection('filter-section')"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Filters</span></div>
             <div class="tool-item" onclick="showSection('speed-section')"><i class="fa-solid fa-gauge-high"></i><span>Speed</span></div>
+            <div class="tool-item" onclick="showSection('adjust-section')"><i class="fa-solid fa-sliders"></i><span>Adjust</span></div>
             <div class="tool-item" onclick="showSection('text-section')"><i class="fa-solid fa-t"></i><span>Text</span></div>
             <div class="tool-item" onclick="showSection('audio-section')"><i class="fa-solid fa-music"></i><span>Audio</span></div>
+        </div>
+
+        <div id="adjust-section" class="controls-section">
+            <span class="tool-label">Brightness</span>
+            <input type="range" id="brightness-slider" min="0" max="200" value="100" class="w3-select" oninput="applyAdjustments()">
+            
+            <span class="tool-label" style="margin-top:10px; display:block;">Zoom (Scale)</span>
+            <input type="range" id="zoom-slider" min="1" max="3" step="0.1" value="1" class="w3-select" oninput="applyAdjustments()">
         </div>
 
         <div id="filter-section" class="controls-section">
