@@ -103,3 +103,6 @@ async function highQualityExport() {
         alert("Export failed. Ensure COOP/COEP headers are set.");
     }
 }
+function changeSpeed(val) { document.getElementById('main-video').playbackRate = val; }
+function applyFilter(val) { document.getElementById('main-video').style.filter = val; }
+function showSection(id) { document.querySelectorAll('.controls-section').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
