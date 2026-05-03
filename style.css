@@ -86,3 +86,37 @@ body {
 /* Video Filters Classes */
 .filter-grayscale { filter: grayscale(100%); }
 .filter-sepia { filter: sepia(100%); }
+/* স্লাইড হয়ে আসা কন্ট্রোল সেকশন */
+.controls-section {
+    display: none;
+    background: #1a1a1a;
+    padding: 15px;
+    border-top: 1px solid #333;
+    animation: slideUp 0.3s ease;
+}
+
+.controls-section.active {
+    display: block !important;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.filter-group {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.filter-btn {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-size: 12px;
+}
