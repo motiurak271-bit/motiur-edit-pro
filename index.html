@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bondhu Motiur Edit AI - PRO</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="logo-animation"><i class="fa-solid fa-microchip"></i></div>
+        <h2 class="brand-name">Bondhu Motiur</h2>
+        <p class="brand-sub">Edit AI</p>
+    </div>
+
+    <div id="main-app">
+        <header class="app-header">
+            <h6 class="header-title">
+                <i class="fa-solid fa-wand-magic-sparkles accent-text"></i> Bondhu Motiur Edit AI (PRO)
+            </h6>
+        </header>
+
+        <div class="preview-container" id="preview-box">
+            <div id="text-overlay">Bondhu Motiur</div>
+            <video id="main-video" class="video-canvas"></video>
+            <i id="placeholder-icon" class="fa-solid fa-play-circle w3-xxlarge w3-opacity"></i>
+        </div>
+
+        <div class="toolbar-container">
+            <div class="tool-item" onclick="showSection('trim-section')"><i class="fa-solid fa-scissors"></i><span>Trim</span></div>
+            <div class="tool-item" onclick="showSection('filter-section')"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Filter</span></div>
+            <div class="tool-item" onclick="showSection('text-section')"><i class="fa-solid fa-t"></i><span>Text</span></div>
+            <div class="tool-item" onclick="showSection('audio-section')"><i class="fa-solid fa-music"></i><span>Audio</span></div>
+        </div>
+
+        <div id="audio-section" class="controls-section">
+            <span class="tool-label">Background Music</span>
+            <input type="file" id="audio-upload" accept="audio/*" hidden>
+            <button class="w3-button w3-purple w3-round w3-small w3-block" onclick="document.getElementById('audio-upload').click()">
+                <i class="fa-solid fa-file-audio"></i> Choose Audio
+            </button>
+        </div>
+
+        <div id="text-section" class="controls-section">
+            <span class="tool-label">Overlay Text</span>
+            <input type="text" id="user-text" class="text-input-box" placeholder="এখানে লিখুন..." oninput="updateText()">
+        </div>
+
+        <div id="trim-section" class="controls-section">
+            <span class="tool-label">Preview Seek Bar</span>
+            <input type="range" id="trim-start" min="0" step="0.1" value="0" oninput="seekVideo(this.value)">
+        </div>
+
+        <div id="filter-section" class="controls-section">
+            <span class="tool-label">AI Filters</span>
+            <div class="filter-group">
+                <button class="filter-btn" onclick="applyFilter('none')">Original</button>
+                <button class="filter-btn grayscale" onclick="applyFilter('grayscale')">B&W</button>
+                <button class="filter-btn sepia" onclick="applyFilter('sepia')">Vintage</button>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <p class="timeline-label">TIMELINE</p>
+            <div class="track" id="video-track">No Video Selected</div>
+            <div class="track audio-track-bg" id="audio-track">No Audio Selected</div>
+        </div>
+
+        <div class="action-bar">
+            <input type="file" id="video-upload" accept="video/*" hidden>
+            <button class="btn btn-plus" onclick="document.getElementById('video-upload').click()">
+                <i class="fa-solid fa-plus"></i> Video
+            </button>
+            <button class="btn btn-export" onclick="highQualityExport()">
+                <i class="fa-solid fa-download"></i> Pro Export
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
