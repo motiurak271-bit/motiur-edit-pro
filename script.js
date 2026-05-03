@@ -48,9 +48,29 @@ function showSection(id) {
     });
 }
 
-// Features
-function applyFilter(f) { video.style.filter = f; }
+// --- Features (সব ফাংশন এখানে) ---
+
+// ব্রাইটনেস এবং জুম কন্ট্রোল
+function applyAdjustments() {
+    const b = document.getElementById('brightness-slider').value;
+    const z = document.getElementById('zoom-slider').value;
+    
+    // ব্রাইটনেস এবং জুম একসাথে কাজ করার জন্য
+    video.style.filter = `brightness(${b}%)`;
+    video.style.transform = `scale(${z})`;
+}
+
+// ফিল্টার অ্যাপ্লাই
+function applyFilter(f) { 
+    video.style.filter = f; 
+    // ফিল্টার দিলে স্লাইডারের ব্রাইটনেস ১০০% এ রিসেট হয়ে যাবে যেন ঝামেলা না হয়
+    document.getElementById('brightness-slider').value = 100;
+}
+
+// স্পিড কন্ট্রোল
 function changeSpeed(s) { video.playbackRate = s; }
+
+// টেক্সট আপডেট
 function updateText() {
     const val = document.getElementById('user-text').value;
     overlay.innerText = val;
