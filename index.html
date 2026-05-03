@@ -32,7 +32,8 @@
 
         <div class="toolbar-container">
             <div class="tool-item" onclick="showSection('trim-section')"><i class="fa-solid fa-scissors"></i><span>Trim</span></div>
-            <div class="tool-item" onclick="showSection('filter-section')"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Filter</span></div>
+            <div class="tool-item" onclick="showSection('filter-section')"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Filters</span></div>
+            <div class="tool-item" onclick="showSection('speed-section')"><i class="fa-solid fa-gauge-high"></i><span>Speed</span></div>
             <div class="tool-item" onclick="showSection('text-section')"><i class="fa-solid fa-t"></i><span>Text</span></div>
             <div class="tool-item" onclick="showSection('audio-section')"><i class="fa-solid fa-music"></i><span>Audio</span></div>
         </div>
@@ -55,12 +56,23 @@
             <input type="range" id="trim-start" min="0" step="0.1" value="0" oninput="seekVideo(this.value)">
         </div>
 
+        <div id="speed-section" class="controls-section">
+            <span class="tool-label">Video Speed Control</span>
+            <div class="filter-group">
+                <button class="filter-btn" onclick="changeSpeed(0.5)">0.5x</button>
+                <button class="filter-btn" onclick="changeSpeed(1)">Normal</button>
+                <button class="filter-btn" onclick="changeSpeed(1.5)">1.5x</button>
+                <button class="filter-btn" onclick="changeSpeed(2)">2x</button>
+            </div>
+        </div>
+
         <div id="filter-section" class="controls-section">
-            <span class="tool-label">AI Filters</span>
+            <span class="tool-label">AI Visual Filters</span>
             <div class="filter-group">
                 <button class="filter-btn" onclick="applyFilter('none')">Original</button>
-                <button class="filter-btn grayscale" onclick="applyFilter('grayscale')">B&W</button>
-                <button class="filter-btn sepia" onclick="applyFilter('sepia')">Vintage</button>
+                <button class="filter-btn grayscale" onclick="applyFilter('grayscale(100%)')">B&W</button>
+                <button class="filter-btn sepia" onclick="applyFilter('sepia(100%)')">Vintage</button>
+                <button class="filter-btn" style="filter: invert(1); background: #eee; color: #000;" onclick="applyFilter('invert(100%)')">Negative</button>
             </div>
         </div>
 
